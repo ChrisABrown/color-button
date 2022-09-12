@@ -31,3 +31,17 @@ test("initial conditions", () => {
   const checkbox = screen.getByRole("checkbox");
   expect(checkbox).not.toBeChecked();
 });
+
+test("checkbox first click disabled, second click enabled", () => {
+  render(<App />);
+
+  //check that the checkbox starts of disabled with first click
+  const checkbox = screen.getByRole("checkbox");
+  const button = screen.getByRole("button");
+
+  fireEvent.click(checkbox);
+  expect(button).toBeDisabled();
+
+  fireEvent.click(checkbox);
+  expect(button).toBeEnabled();
+});
